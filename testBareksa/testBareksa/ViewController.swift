@@ -8,12 +8,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    private let table = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+    }
 
 }
 
+extension ViewController: UITableViewDelegate {
+    private func setUpTable() {
+        
+    }
+}
