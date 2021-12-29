@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         setUpHeader()
         setUpTable()
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -32,7 +33,7 @@ class ViewController: UIViewController {
     }
     
     private func setUpHeader() {
-        codeSegmented = CustomSegmentedControl(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 50), buttonTitle: ["Imbal Hasil","Dana Kelolan"], segmentedType: .headerSegmented)
+        codeSegmented = CustomSegmentedControl(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 50), buttonTitle: ["Imbal Hasil","Dana Kelolaan"], segmentedType: .headerSegmented)
         codeSegmented.backgroundColor = UIColor.clear
         codeSegmented.delegate = self
         view.addSubview(codeSegmented)
@@ -49,10 +50,8 @@ extension ViewController: CustomSegmentedControlDelegate {
 extension ViewController: UITableViewDelegate {
     
     private func setUpTable(){
-        print(view.frame.width)
-        print(UIScreen.main.bounds.width)
-//        table.register(UITableViewCell.self, forCellReuseIdentifier: "ProfileCell")
-//        table.register(ProfileHealthToggleTableViewCells.getNib(), forCellReuseIdentifier: ProfileHealthToggleTableViewCells.getIdentifier())
+        table.register(ProductHeaderTableViewCell.getNib(), forCellReuseIdentifier: ProductHeaderTableViewCell.getIdentifier())
+        table.register(ProductDataTableViewCell.getNib(), forCellReuseIdentifier: ProductDataTableViewCell.getIdentifier())
         table.delegate = self
         table.dataSource = self
         table.allowsSelection = false
@@ -61,20 +60,39 @@ extension ViewController: UITableViewDelegate {
         view.addSubview(table)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor, constant: 16).isActive = true
-        table.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
+        table.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         table.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         table.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.section == 0 ? 150 : 100
     }
 }
 
 extension ViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        8
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductHeaderTableViewCell", for: indexPath) as! ProductHeaderTableViewCell
+            cell.setData(headerData: [
+            ["productImageData": "https://images.bareksa.com/im/avatar/bni_asset_management.png", "productTitleData": "BNI-AM Insipiring Equity Fund"],
+            ["productImageData": "https://images.bareksa.com/im/avatar/bni_asset_management.png", "productTitleData": "1"],
+            ["productImageData": "https://images.bareksa.com/im/avatar/bni_asset_management.png", "productTitleData": "2"],
+            ])
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductDataTableViewCell", for: indexPath) as! ProductDataTableViewCell
+        cell.setData(productData: ["abc", "def", "ghi"], productTitle: "Dana Kelolaan")
+        return cell
     }
-    
-    
 }

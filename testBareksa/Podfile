@@ -8,5 +8,6 @@ target 'testBareksa' do
   # Pods for testBareksa
 pod "RxSwift"
 pod "RxCocoa"
+pod 'SDWebImage', '~> 5.0'
 
 end
