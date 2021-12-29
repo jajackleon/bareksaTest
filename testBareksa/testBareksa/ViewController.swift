@@ -52,21 +52,26 @@ extension ViewController: UITableViewDelegate {
     private func setUpTable(){
         table.register(ProductHeaderTableViewCell.getNib(), forCellReuseIdentifier: ProductHeaderTableViewCell.getIdentifier())
         table.register(ProductDataTableViewCell.getNib(), forCellReuseIdentifier: ProductDataTableViewCell.getIdentifier())
+        table.register(DetailButtonTableViewCell.getNib(), forCellReuseIdentifier: DetailButtonTableViewCell.getIdentifier())
+        table.register(BuyButtonTableViewCell.getNib(), forCellReuseIdentifier: BuyButtonTableViewCell.getIdentifier())
         table.delegate = self
         table.dataSource = self
         table.allowsSelection = false
-        table.isScrollEnabled = false
-        table.backgroundColor = .orange
+        table.isScrollEnabled = true
+        table.separatorColor = UIColor.clear
         view.addSubview(table)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor, constant: 16).isActive = true
         table.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         table.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         table.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 150 : 100
+        if indexPath.section == 0 { return 150 }
+        else if indexPath.section == 6 || indexPath.section == 7 { return 60 }
+        else { return  100 }
     }
 }
 
@@ -88,6 +93,10 @@ extension ViewController: UITableViewDataSource {
             ["productImageData": "https://images.bareksa.com/im/avatar/bni_asset_management.png", "productTitleData": "1"],
             ["productImageData": "https://images.bareksa.com/im/avatar/bni_asset_management.png", "productTitleData": "2"],
             ])
+            return cell
+        }
+        else if indexPath.section == 6 || indexPath.section == 7 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DetailButtonTableViewCell", for: indexPath) as! DetailButtonTableViewCell
             return cell
         }
         

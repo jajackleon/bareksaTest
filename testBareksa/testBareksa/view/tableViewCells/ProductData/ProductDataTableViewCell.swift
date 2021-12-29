@@ -16,6 +16,7 @@ class ProductDataTableViewCell: UITableViewCell {
     @IBOutlet weak var rightProductDetailValue: UILabel!
     
     @IBOutlet weak var centerProductDetailValue: UILabel!
+    
     static func getNib() -> UINib{
         return UINib(nibName: "\(ProductDataTableViewCell.self)", bundle: nil)
     }

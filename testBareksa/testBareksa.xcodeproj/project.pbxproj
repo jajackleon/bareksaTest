@@ -26,6 +26,11 @@
 		4938728A277C853A00D6F794 /* ProductHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387288277C853A00D6F794 /* ProductHeaderTableViewCell.swift */; };
 		4938728B277C853A00D6F794 /* ProductHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49387289277C853A00D6F794 /* ProductHeaderTableViewCell.xib */; };
 		4938728D277C91C700D6F794 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938728C277C91C700D6F794 /* UIView+.swift */; };
+		49387291277C999700D6F794 /* BuyButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938728F277C999600D6F794 /* BuyButtonTableViewCell.swift */; };
+		49387292277C999700D6F794 /* BuyButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49387290277C999600D6F794 /* BuyButtonTableViewCell.xib */; };
+		49387295277C9A8600D6F794 /* DetailButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387293277C9A8600D6F794 /* DetailButtonTableViewCell.swift */; };
+		49387296277C9A8600D6F794 /* DetailButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49387294277C9A8600D6F794 /* DetailButtonTableViewCell.xib */; };
+		49387298277C9B2000D6F794 /* UIButtonView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387297277C9B2000D6F794 /* UIButtonView+.swift */; };
 		D75269D8F3922CCED718A696 /* Pods_testBareksa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +56,11 @@
 		49387288277C853A00D6F794 /* ProductHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		49387289277C853A00D6F794 /* ProductHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		4938728C277C91C700D6F794 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		4938728F277C999600D6F794 /* BuyButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyButtonTableViewCell.swift; sourceTree = "<group>"; };
+		49387290277C999600D6F794 /* BuyButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuyButtonTableViewCell.xib; sourceTree = "<group>"; };
+		49387293277C9A8600D6F794 /* DetailButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonTableViewCell.swift; sourceTree = "<group>"; };
+		49387294277C9A8600D6F794 /* DetailButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailButtonTableViewCell.xib; sourceTree = "<group>"; };
+		49387297277C9B2000D6F794 /* UIButtonView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButtonView+.swift"; sourceTree = "<group>"; };
 		886A9EF16539AD3F9C64B47A /* Pods-testBareksa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.release.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.release.xcconfig"; sourceTree = "<group>"; };
 		89F0AB9C2EEA7C9E27965DB5 /* Pods-testBareksa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.debug.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.debug.xcconfig"; sourceTree = "<group>"; };
 		A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_testBareksa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +161,7 @@
 				49387269277C017C00D6F794 /* UITableView+.swift */,
 				4938727B277C3B8000D6F794 /* UIImageView+.swift */,
 				4938728C277C91C700D6F794 /* UIView+.swift */,
+				49387297277C9B2000D6F794 /* UIButtonView+.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -158,6 +169,7 @@
 		4938726B277C023100D6F794 /* tableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				4938728E277C997E00D6F794 /* ButtonAction */,
 				4938727D277C3C0200D6F794 /* ProductData */,
 				49387276277C332D00D6F794 /* ProductHeader */,
 				49387270277C1C4D00D6F794 /* TimeFrameHeader.swift */,
@@ -200,6 +212,17 @@
 				4938727F277C3C2500D6F794 /* ProductDataTableViewCell.xib */,
 			);
 			path = ProductData;
+			sourceTree = "<group>";
+		};
+		4938728E277C997E00D6F794 /* ButtonAction */ = {
+			isa = PBXGroup;
+			children = (
+				4938728F277C999600D6F794 /* BuyButtonTableViewCell.swift */,
+				49387290277C999600D6F794 /* BuyButtonTableViewCell.xib */,
+				49387293277C9A8600D6F794 /* DetailButtonTableViewCell.swift */,
+				49387294277C9A8600D6F794 /* DetailButtonTableViewCell.xib */,
+			);
+			path = ButtonAction;
 			sourceTree = "<group>";
 		};
 		AF98C1E8C72E1206CA1BF919 /* Frameworks */ = {
@@ -270,7 +293,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49387296277C9A8600D6F794 /* DetailButtonTableViewCell.xib in Resources */,
 				4938728B277C853A00D6F794 /* ProductHeaderTableViewCell.xib in Resources */,
+				49387292277C999700D6F794 /* BuyButtonTableViewCell.xib in Resources */,
 				49387281277C3C2500D6F794 /* ProductDataTableViewCell.xib in Resources */,
 				493871FE277B182E00D6F794 /* LaunchScreen.storyboard in Resources */,
 				493871FB277B182E00D6F794 /* Assets.xcassets in Resources */,
@@ -334,12 +359,15 @@
 				49387271277C1C4D00D6F794 /* TimeFrameHeader.swift in Sources */,
 				493871F2277B182C00D6F794 /* AppDelegate.swift in Sources */,
 				4938727C277C3B8000D6F794 /* UIImageView+.swift in Sources */,
+				49387291277C999700D6F794 /* BuyButtonTableViewCell.swift in Sources */,
 				4938726A277C017C00D6F794 /* UITableView+.swift in Sources */,
 				49387283277C3D1100D6F794 /* ProductStackHeader.swift in Sources */,
 				493871F4277B182C00D6F794 /* SceneDelegate.swift in Sources */,
+				49387295277C9A8600D6F794 /* DetailButtonTableViewCell.swift in Sources */,
 				49387209277B18CC00D6F794 /* ProductDetail.swift in Sources */,
 				4938728D277C91C700D6F794 /* UIView+.swift in Sources */,
 				49387275277C1D1900D6F794 /* CustomSegmentedControl.swift in Sources */,
+				49387298277C9B2000D6F794 /* UIButtonView+.swift in Sources */,
 				4938728A277C853A00D6F794 /* ProductHeaderTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
