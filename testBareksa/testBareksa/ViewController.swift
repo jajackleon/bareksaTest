@@ -10,18 +10,36 @@ import RxCocoa
 
 class ViewController: UIViewController {
     private let table = UITableView()
+    
     private var codeSegmented: CustomSegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpHeader()
         setUpTable()
+        fetchData()
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+    }
+    
+    private func fetchData() {
+        URLSession.shared.request(url: Constants.productDetailURL, expecting: ProductDetail.self) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+                case .success(let productDetails):
+                    for productDetail in productDetails.data {
+                        print(productDetail.name)
+                        print(productDetail.details.imAvatar)
+                    }
+                    DispatchQueue.main.async {
+                        self.table.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+            }
+        }
     }
     
     private func set(){
