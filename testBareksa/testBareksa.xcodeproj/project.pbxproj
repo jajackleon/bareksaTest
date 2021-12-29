@@ -13,6 +13,8 @@
 		493871F9277B182C00D6F794 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 493871F7277B182C00D6F794 /* Main.storyboard */; };
 		493871FB277B182E00D6F794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 493871FA277B182E00D6F794 /* Assets.xcassets */; };
 		493871FE277B182E00D6F794 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 493871FC277B182E00D6F794 /* LaunchScreen.storyboard */; };
+		49387209277B18CC00D6F794 /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387208277B18CC00D6F794 /* ProductDetail.swift */; };
+		4938720B277B193800D6F794 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938720A277B193800D6F794 /* ChartData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		493871FA277B182E00D6F794 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		493871FD277B182E00D6F794 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		493871FF277B182E00D6F794 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49387208277B18CC00D6F794 /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
+		4938720A277B193800D6F794 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,10 @@
 		493871F0277B182C00D6F794 /* testBareksa */ = {
 			isa = PBXGroup;
 			children = (
+				4938720C277B194500D6F794 /* Networking */,
+				49387205277B18A100D6F794 /* models */,
+				49387206277B18A500D6F794 /* view */,
+				49387207277B18AA00D6F794 /* view mdoels */,
 				493871F1277B182C00D6F794 /* AppDelegate.swift */,
 				493871F3277B182C00D6F794 /* SceneDelegate.swift */,
 				493871F5277B182C00D6F794 /* ViewController.swift */,
@@ -65,6 +73,36 @@
 				493871FF277B182E00D6F794 /* Info.plist */,
 			);
 			path = testBareksa;
+			sourceTree = "<group>";
+		};
+		49387205277B18A100D6F794 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				49387208277B18CC00D6F794 /* ProductDetail.swift */,
+				4938720A277B193800D6F794 /* ChartData.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		49387206277B18A500D6F794 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		49387207277B18AA00D6F794 /* view mdoels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "view mdoels";
+			sourceTree = "<group>";
+		};
+		4938720C277B194500D6F794 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +177,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				493871F6277B182C00D6F794 /* ViewController.swift in Sources */,
+				4938720B277B193800D6F794 /* ChartData.swift in Sources */,
 				493871F2277B182C00D6F794 /* AppDelegate.swift in Sources */,
 				493871F4277B182C00D6F794 /* SceneDelegate.swift in Sources */,
+				49387209277B18CC00D6F794 /* ProductDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
