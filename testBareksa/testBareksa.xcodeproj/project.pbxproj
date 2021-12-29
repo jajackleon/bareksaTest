@@ -15,6 +15,9 @@
 		493871FE277B182E00D6F794 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 493871FC277B182E00D6F794 /* LaunchScreen.storyboard */; };
 		49387209277B18CC00D6F794 /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387208277B18CC00D6F794 /* ProductDetail.swift */; };
 		4938720B277B193800D6F794 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938720A277B193800D6F794 /* ChartData.swift */; };
+		4938726A277C017C00D6F794 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387269277C017C00D6F794 /* UITableView+.swift */; };
+		49387271277C1C4D00D6F794 /* TimeFrameHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387270277C1C4D00D6F794 /* TimeFrameHeader.swift */; };
+		49387275277C1D1900D6F794 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387274277C1D1900D6F794 /* CustomSegmentedControl.swift */; };
 		D75269D8F3922CCED718A696 /* Pods_testBareksa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +32,9 @@
 		493871FF277B182E00D6F794 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49387208277B18CC00D6F794 /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
 		4938720A277B193800D6F794 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
+		49387269277C017C00D6F794 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		49387270277C1C4D00D6F794 /* TimeFrameHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrameHeader.swift; sourceTree = "<group>"; };
+		49387274277C1D1900D6F794 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		886A9EF16539AD3F9C64B47A /* Pods-testBareksa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.release.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.release.xcconfig"; sourceTree = "<group>"; };
 		89F0AB9C2EEA7C9E27965DB5 /* Pods-testBareksa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.debug.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.debug.xcconfig"; sourceTree = "<group>"; };
 		A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_testBareksa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +58,6 @@
 				89F0AB9C2EEA7C9E27965DB5 /* Pods-testBareksa.debug.xcconfig */,
 				886A9EF16539AD3F9C64B47A /* Pods-testBareksa.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -77,6 +82,7 @@
 		493871F0277B182C00D6F794 /* testBareksa */ = {
 			isa = PBXGroup;
 			children = (
+				49387272277C1CFD00D6F794 /* Utils */,
 				4938720C277B194500D6F794 /* Networking */,
 				49387205277B18A100D6F794 /* models */,
 				49387206277B18A500D6F794 /* view */,
@@ -104,6 +110,7 @@
 		49387206277B18A500D6F794 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				4938726B277C023100D6F794 /* tableViewCells */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -120,6 +127,39 @@
 			children = (
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		49387268277C016F00D6F794 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				49387269277C017C00D6F794 /* UITableView+.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4938726B277C023100D6F794 /* tableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				49387270277C1C4D00D6F794 /* TimeFrameHeader.swift */,
+			);
+			path = tableViewCells;
+			sourceTree = "<group>";
+		};
+		49387272277C1CFD00D6F794 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				49387268277C016F00D6F794 /* Helpers */,
+				49387273277C1D0300D6F794 /* Components */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		49387273277C1D0300D6F794 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				49387274277C1D1900D6F794 /* CustomSegmentedControl.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		AF98C1E8C72E1206CA1BF919 /* Frameworks */ = {
@@ -247,9 +287,12 @@
 			files = (
 				493871F6277B182C00D6F794 /* ViewController.swift in Sources */,
 				4938720B277B193800D6F794 /* ChartData.swift in Sources */,
+				49387271277C1C4D00D6F794 /* TimeFrameHeader.swift in Sources */,
 				493871F2277B182C00D6F794 /* AppDelegate.swift in Sources */,
+				4938726A277C017C00D6F794 /* UITableView+.swift in Sources */,
 				493871F4277B182C00D6F794 /* SceneDelegate.swift in Sources */,
 				49387209277B18CC00D6F794 /* ProductDetail.swift in Sources */,
+				49387275277C1D1900D6F794 /* CustomSegmentedControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
