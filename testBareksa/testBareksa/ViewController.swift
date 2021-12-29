@@ -9,25 +9,35 @@ import UIKit
 import RxCocoa
 
 class ViewController: UIViewController {
-    private let table = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    private let table = UITableView()
+    private var codeSegmented: CustomSegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let codeSegmented = CustomSegmentedControl(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 50), buttonTitle: ["Imbal Hasil","Dana Kelolan"], segmentedType: .headerSegmented)
-        codeSegmented.backgroundColor = .clear
-        codeSegmented.delegate = self
-        view.addSubview(codeSegmented)
-        
-//        let timeFrameSegmented = CustomSegmentedControl(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 50), buttonTitle: ["1W","1M", "1Y", "3Y", "5Y", "10Y", "All"])
-//        timeFrameSegmented.backgroundColor = .clear
-//        timeFrameSegmented.delegate = self
-//        view.addSubview(timeFrameSegmented)
+        setUpHeader()
+        setUpTable()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
     }
+    
+    private func set(){
+        let timeFrameSegmented = CustomSegmentedControl(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 50), buttonTitle: ["1W","1M", "1Y", "3Y", "5Y", "10Y", "All"], segmentedType: .footerSegmented)
+
+        timeFrameSegmented.backgroundColor = UIColor.clear
+        timeFrameSegmented.delegate = self
+        view.addSubview(timeFrameSegmented)
+    }
+    
+    private func setUpHeader() {
+        codeSegmented = CustomSegmentedControl(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 50), buttonTitle: ["Imbal Hasil","Dana Kelolan"], segmentedType: .headerSegmented)
+        codeSegmented.backgroundColor = UIColor.clear
+        codeSegmented.delegate = self
+        view.addSubview(codeSegmented)
+    }
+
 }
 
 extension ViewController: CustomSegmentedControlDelegate {
@@ -37,14 +47,23 @@ extension ViewController: CustomSegmentedControlDelegate {
 }
 
 extension ViewController: UITableViewDelegate {
-    private func setUpTable() {
-        
+    
+    private func setUpTable(){
+        print(view.frame.width)
+        print(UIScreen.main.bounds.width)
+//        table.register(UITableViewCell.self, forCellReuseIdentifier: "ProfileCell")
+//        table.register(ProfileHealthToggleTableViewCells.getNib(), forCellReuseIdentifier: ProfileHealthToggleTableViewCells.getIdentifier())
         table.delegate = self
         table.dataSource = self
         table.allowsSelection = false
         table.isScrollEnabled = false
-        table.backgroundColor = .white
+        table.backgroundColor = .orange
         view.addSubview(table)
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor, constant: 16).isActive = true
+        table.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
+        table.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        table.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
     }
 }
 

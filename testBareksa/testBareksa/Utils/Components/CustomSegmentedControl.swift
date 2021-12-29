@@ -97,8 +97,8 @@ extension CustomSegmentedControl {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         stack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        stack.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        stack.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        stack.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
+        stack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
     }
     
     private func configFooterStackView() {
