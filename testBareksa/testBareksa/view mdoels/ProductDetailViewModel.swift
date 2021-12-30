@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Charts
 
 class ProductDetailViewModel {
     var numberOfSection: Int = 0
@@ -28,6 +29,29 @@ class ProductDetailViewModel {
     var selectedIndex: Int = 0 {
         didSet {
             selectedProduct = productData[selectedIndex]
+        }
+    }
+    
+    var productChartData: [[ChartDataEntry]] = [[ChartDataEntry]]()
+    
+    func fetchChartData(completion: @escaping ([[ChartDataEntry]]) -> Void ) {
+        URLSession.shared.request(url: Constants.chartDataURL, expecting: ChartData.self) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+                case .success(let chartDatas):
+                
+                _ = chartDatas.data.values.map {
+                    var emptyChart = [ChartDataEntry]()
+                    _ = $0.data.map {
+                        emptyChart.append(ChartDataEntry(x: $0.growth, y: $0.value))
+                    }
+                    self.productChartData.append(emptyChart)
+                    completion(self.productChartData)
+                }
+
+                case .failure(let error):
+                    print(error)
+            }
         }
     }
     

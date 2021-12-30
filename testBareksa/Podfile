@@ -9,6 +9,6 @@ target 'testBareksa' do
 pod "RxSwift"
 pod "RxCocoa"
 pod 'SDWebImage', '~> 5.0'
-pod 'Charts'
+pod 'Charts', '~> 3.2.2'
 
 end

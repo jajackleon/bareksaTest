@@ -7,10 +7,18 @@
 
 import UIKit
 import RxCocoa
+import Charts
 
 class ViewController: UIViewController {
     var productVM : ProductDetailViewModel!
     
+    lazy var lineChart: LineChartView = {
+        let lineChartView = LineChartView(frame: CGRect(x: 0, y: 0, width: 327, height: 186))
+        lineChartView.backgroundColor = .clear
+        lineChartView.xAxis.labelFont = .boldSystemFont(ofSize: 12)
+        lineChartView.legend.enabled = true
+        return lineChartView
+    }()
     
     //TODO: Wrap semua  view di dalam scroll view
     lazy var scrollView : UIScrollView = {
@@ -40,9 +48,28 @@ class ViewController: UIViewController {
         
         productVM = ProductDetailViewModel()
         productVM.fetchData(tableView: table)
+        productVM.fetchChartData { Data in
+            DispatchQueue.main.async {
+                _ = Data.map {
+                    self.setChart(dataEntries: $0)
+                }
+            }
+        }
         setUpHeader()
+        
+//        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+//        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0]
+//        view.addSubview(lineChart)
+//
+//        lineChart.translatesAutoresizingMaskIntoConstraints = false
+//        lineChart.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor, constant: 8).isActive = true
+//        lineChart.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+//        lineChart.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+//        lineChart.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
         setUpTimeFrame()
         setUpTable()
+        view.addSubview(lineChart)
         
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "Your Title"
@@ -191,4 +218,27 @@ extension ViewController: UITableViewDataSource {
         }
         return cell
     }
+}
+
+extension ViewController {
+    
+    func setChart(dataEntries: [ChartDataEntry]) {
+        
+            let pieChartDataSet = LineChartDataSet(entries: dataEntries, label: "Units Sold")
+            let pieChartData = LineChartData(dataSet: pieChartDataSet)
+            lineChart.data = pieChartData
+            
+            var colors: [UIColor] = []
+            
+            for _ in 0..<dataEntries.count {
+                let red = Double(arc4random_uniform(256))
+                let green = Double(arc4random_uniform(256))
+                let blue = Double(arc4random_uniform(256))
+                
+                let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+                colors.append(color)
+            }
+            
+            pieChartDataSet.colors = colors
+        }
 }
