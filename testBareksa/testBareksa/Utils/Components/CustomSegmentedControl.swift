@@ -74,14 +74,16 @@ class CustomSegmentedControl: UIView {
 extension CustomSegmentedControl {
     private func updateView() {
         createButton()
-        configSelectorView()
         
         switch segmentedType {
             case .footerSegmented:
+                configSelectorViewWithSpacing(with: 10)
                 configFooterStackView()
             case .headerSegmented:
+                configSelectorView()
                 configHeaderStackView()
             case .tableHeaderSegmented:
+                configSelectorView()
                 configTableHeader()
             case .none:
                 break
@@ -108,7 +110,7 @@ extension CustomSegmentedControl {
         stack.distribution = .fillEqually
         addSubview(stack)
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        stack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16).isActive = true
         stack.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         stack.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
     }
@@ -124,6 +126,13 @@ extension CustomSegmentedControl {
     private func configSelectorView() {
         let selectorWidth = frame.width / CGFloat(self.buttonTitles.count)
         selectorView = UIView(frame: CGRect(x: 0, y: self.frame.height, width: selectorWidth, height: 2))
+        selectorView.backgroundColor = selectorViewColor
+        addSubview(selectorView)
+    }
+    
+    private func configSelectorViewWithSpacing(with spacing: Int) {
+        let selectorWidth = frame.width / CGFloat(self.buttonTitles.count)
+        selectorView = UIView(frame: CGRect(x: 0, y: self.frame.height - CGFloat(spacing), width: selectorWidth, height: 2))
         selectorView.backgroundColor = selectorViewColor
         addSubview(selectorView)
     }

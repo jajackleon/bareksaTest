@@ -40,14 +40,18 @@ class ProductHeaderTableViewCell: UITableViewCell {
     }
     
     func setData(headerData: [[String: String]]) {
-        leftProductImage.sd_setImage(with: URL(string: headerData[0]["productImageData"] ?? ""), placeholderImage: UIImage(named: "placeholder.png"))
-        
-        centerProductImage.sd_setImage(with: URL(string: headerData[1]["productImageData"] ?? ""), placeholderImage: UIImage(named: "placeholder.png"))
-        
-        rightProductImage.sd_setImage(with: URL(string: headerData[2]["productImageData"] ?? ""), placeholderImage: UIImage(named: "placeholder.png"))
-        
-        leftProductTitle.text = headerData[0]["productTitleData"]
-        centerProductTitle.text = headerData[1]["productTitleData"]
-        rightProductTitle.text = headerData[2]["productTitleData"]
+        if headerData.isEmpty {
+            
+        } else {
+            leftProductImage.sd_setImage(with: URL(string: headerData[0]["productImageData"] ?? ""), placeholderImage: UIImage(named: "placeholder.png"))
+            
+            centerProductImage.sd_setImage(with: URL(string: headerData[1]["productImageData"] ?? ""), placeholderImage: UIImage(named: "placeholder.png"))
+            
+            rightProductImage.sd_setImage(with: URL(string: headerData[2]["productImageData"] ?? ""), placeholderImage: UIImage(named: "placeholder.png"))
+            
+            leftProductTitle.text = headerData[0]["productTitleData"]
+            centerProductTitle.text = headerData[1]["productTitleData"]
+            rightProductTitle.text = headerData[2]["productTitleData"]
+        }
     }
 }
