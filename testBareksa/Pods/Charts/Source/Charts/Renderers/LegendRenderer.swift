@@ -12,6 +12,10 @@
 import Foundation
 import CoreGraphics
 
+#if !os(OSX)
+    import UIKit
+#endif
+
 @objc(ChartLegendRenderer)
 open class LegendRenderer: Renderer
 {
@@ -39,7 +43,7 @@ open class LegendRenderer: Renderer
             {
                 guard let dataSet = data.getDataSetByIndex(i) else { continue }
                 
-                let clrs: [NSUIColor] = dataSet.colors
+                var clrs: [NSUIColor] = dataSet.colors
                 let entryCount = dataSet.entryCount
                 
                 // if we have a barchart with stacked bars
@@ -47,19 +51,16 @@ open class LegendRenderer: Renderer
                     (dataSet as! IBarChartDataSet).isStacked
                 {
                     let bds = dataSet as! IBarChartDataSet
-                    let sLabels = bds.stackLabels
+                    var sLabels = bds.stackLabels
                     let minEntries = min(clrs.count, bds.stackSize)
 
                     for j in 0..<minEntries
                     {
                         let label: String?
-                        if (sLabels.count > 0)
-                        {
+                        if (sLabels.count > 0 && minEntries > 0) {
                             let labelIndex = j % minEntries
                             label = sLabels.indices.contains(labelIndex) ? sLabels[labelIndex] : nil
-                        }
-                        else
-                        {
+                        } else {
                             label = nil
                         }
 
@@ -211,7 +212,7 @@ open class LegendRenderer: Renderer
         let labelLineHeight = labelFont.lineHeight
         let formYOffset = labelLineHeight / 2.0
 
-        let entries = legend.entries
+        var entries = legend.entries
         
         let defaultFormSize = legend.formSize
         let formToTextSpace = legend.formToTextSpace
@@ -299,9 +300,9 @@ open class LegendRenderer: Renderer
         {
         case .horizontal:
             
-            let calculatedLineSizes = legend.calculatedLineSizes
-            let calculatedLabelSizes = legend.calculatedLabelSizes
-            let calculatedLabelBreakPoints = legend.calculatedLabelBreakPoints
+            var calculatedLineSizes = legend.calculatedLineSizes
+            var calculatedLabelSizes = legend.calculatedLabelSizes
+            var calculatedLabelBreakPoints = legend.calculatedLabelBreakPoints
             
             var posX: CGFloat = originPosX
             var posY: CGFloat

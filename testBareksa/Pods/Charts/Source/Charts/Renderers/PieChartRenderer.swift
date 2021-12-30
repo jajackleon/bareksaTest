@@ -12,12 +12,8 @@
 import Foundation
 import CoreGraphics
 
-#if canImport(UIKit)
+#if !os(OSX)
     import UIKit
-#endif
-
-#if canImport(Cocoa)
-import Cocoa
 #endif
 
 open class PieChartRenderer: DataRenderer
@@ -43,9 +39,11 @@ open class PieChartRenderer: DataRenderer
             accessibleChartElements.removeAll()
 
             for set in pieData!.dataSets as! [IPieChartDataSet]
-                where set.isVisible && set.entryCount > 0
             {
-                drawDataSet(context: context, dataSet: set)
+                if set.isVisible && set.entryCount > 0
+                {
+                    drawDataSet(context: context, dataSet: set)
+                }
             }
         }
     }
@@ -120,7 +118,7 @@ open class PieChartRenderer: DataRenderer
         let phaseY = animator.phaseY
 
         let entryCount = dataSet.entryCount
-        let drawAngles = chart.drawAngles
+        var drawAngles = chart.drawAngles
         let center = chart.centerCircleBox
         let radius = chart.radius
         let drawInnerArc = chart.drawHoleEnabled && !chart.drawSlicesUnderHoleEnabled
@@ -163,129 +161,122 @@ open class PieChartRenderer: DataRenderer
             var innerRadius = userInnerRadius
 
             guard let e = dataSet.entryForIndex(j) else { continue }
-            
-            defer
-            {
-                // From here on, even when skipping (i.e for highlight),
-                //  increase the angle
-                angle += sliceAngle * CGFloat(phaseX)
-            }
 
             // draw only if the value is greater than zero
-            if abs(e.y) < Double.ulpOfOne { continue }
-            
-            // Skip if highlighted
-            if dataSet.isHighlightEnabled && chart.needsHighlight(index: j)
+            if (abs(e.y) > Double.ulpOfOne)
             {
-                continue
-            }
-        
-            let accountForSliceSpacing = sliceSpace > 0.0 && sliceAngle <= 180.0
-
-            context.setFillColor(dataSet.color(atIndex: j).cgColor)
-
-            let sliceSpaceAngleOuter = visibleAngleCount == 1 ?
-                0.0 :
-                sliceSpace / radius.DEG2RAD
-            let startAngleOuter = rotationAngle + (angle + sliceSpaceAngleOuter / 2.0) * CGFloat(phaseY)
-            var sweepAngleOuter = (sliceAngle - sliceSpaceAngleOuter) * CGFloat(phaseY)
-            if sweepAngleOuter < 0.0
-            {
-                sweepAngleOuter = 0.0
-            }
-
-            let arcStartPointX = center.x + radius * cos(startAngleOuter.DEG2RAD)
-            let arcStartPointY = center.y + radius * sin(startAngleOuter.DEG2RAD)
-
-            let path = CGMutablePath()
-
-            path.move(to: CGPoint(x: arcStartPointX,
-                                  y: arcStartPointY))
-
-            path.addRelativeArc(center: center, radius: radius, startAngle: startAngleOuter.DEG2RAD, delta: sweepAngleOuter.DEG2RAD)
-
-            if drawInnerArc &&
-                (innerRadius > 0.0 || accountForSliceSpacing)
-            {
-                if accountForSliceSpacing
+                if !chart.needsHighlight(index: j)
                 {
-                    var minSpacedRadius = calculateMinimumRadiusForSpacedSlice(
-                        center: center,
-                        radius: radius,
-                        angle: sliceAngle * CGFloat(phaseY),
-                        arcStartPointX: arcStartPointX,
-                        arcStartPointY: arcStartPointY,
-                        startAngle: startAngleOuter,
-                        sweepAngle: sweepAngleOuter)
-                    if minSpacedRadius < 0.0
+                    let accountForSliceSpacing = sliceSpace > 0.0 && sliceAngle <= 180.0
+
+                    context.setFillColor(dataSet.color(atIndex: j).cgColor)
+
+                    let sliceSpaceAngleOuter = visibleAngleCount == 1 ?
+                        0.0 :
+                        sliceSpace / radius.DEG2RAD
+                    let startAngleOuter = rotationAngle + (angle + sliceSpaceAngleOuter / 2.0) * CGFloat(phaseY)
+                    var sweepAngleOuter = (sliceAngle - sliceSpaceAngleOuter) * CGFloat(phaseY)
+                    if sweepAngleOuter < 0.0
                     {
-                        minSpacedRadius = -minSpacedRadius
+                        sweepAngleOuter = 0.0
                     }
-                    innerRadius = min(max(innerRadius, minSpacedRadius), radius)
+
+                    let arcStartPointX = center.x + radius * cos(startAngleOuter.DEG2RAD)
+                    let arcStartPointY = center.y + radius * sin(startAngleOuter.DEG2RAD)
+
+                    let path = CGMutablePath()
+
+                    path.move(to: CGPoint(x: arcStartPointX,
+                                          y: arcStartPointY))
+
+                    path.addRelativeArc(center: center, radius: radius, startAngle: startAngleOuter.DEG2RAD, delta: sweepAngleOuter.DEG2RAD)
+
+                    if drawInnerArc &&
+                        (innerRadius > 0.0 || accountForSliceSpacing)
+                    {
+                        if accountForSliceSpacing
+                        {
+                            var minSpacedRadius = calculateMinimumRadiusForSpacedSlice(
+                                center: center,
+                                radius: radius,
+                                angle: sliceAngle * CGFloat(phaseY),
+                                arcStartPointX: arcStartPointX,
+                                arcStartPointY: arcStartPointY,
+                                startAngle: startAngleOuter,
+                                sweepAngle: sweepAngleOuter)
+                            if minSpacedRadius < 0.0
+                            {
+                                minSpacedRadius = -minSpacedRadius
+                            }
+                            innerRadius = min(max(innerRadius, minSpacedRadius), radius)
+                        }
+
+                        let sliceSpaceAngleInner = visibleAngleCount == 1 || innerRadius == 0.0 ?
+                            0.0 :
+                            sliceSpace / innerRadius.DEG2RAD
+                        let startAngleInner = rotationAngle + (angle + sliceSpaceAngleInner / 2.0) * CGFloat(phaseY)
+                        var sweepAngleInner = (sliceAngle - sliceSpaceAngleInner) * CGFloat(phaseY)
+                        if sweepAngleInner < 0.0
+                        {
+                            sweepAngleInner = 0.0
+                        }
+                        let endAngleInner = startAngleInner + sweepAngleInner
+
+                        path.addLine(
+                            to: CGPoint(
+                                x: center.x + innerRadius * cos(endAngleInner.DEG2RAD),
+                                y: center.y + innerRadius * sin(endAngleInner.DEG2RAD)))
+
+                        path.addRelativeArc(center: center, radius: innerRadius, startAngle: endAngleInner.DEG2RAD, delta: -sweepAngleInner.DEG2RAD)
+                    }
+                    else
+                    {
+                        if accountForSliceSpacing
+                        {
+                            let angleMiddle = startAngleOuter + sweepAngleOuter / 2.0
+
+                            let sliceSpaceOffset =
+                                calculateMinimumRadiusForSpacedSlice(
+                                    center: center,
+                                    radius: radius,
+                                    angle: sliceAngle * CGFloat(phaseY),
+                                    arcStartPointX: arcStartPointX,
+                                    arcStartPointY: arcStartPointY,
+                                    startAngle: startAngleOuter,
+                                    sweepAngle: sweepAngleOuter)
+
+                            let arcEndPointX = center.x + sliceSpaceOffset * cos(angleMiddle.DEG2RAD)
+                            let arcEndPointY = center.y + sliceSpaceOffset * sin(angleMiddle.DEG2RAD)
+
+                            path.addLine(
+                                to: CGPoint(
+                                    x: arcEndPointX,
+                                    y: arcEndPointY))
+                        }
+                        else
+                        {
+                            path.addLine(to: center)
+                        }
+                    }
+
+                    path.closeSubpath()
+
+                    context.beginPath()
+                    context.addPath(path)
+                    context.fillPath(using: .evenOdd)
+
+                    let axElement = createAccessibleElement(withIndex: j,
+                                                            container: chart,
+                                                            dataSet: dataSet)
+                    { (element) in
+                        element.accessibilityFrame = path.boundingBoxOfPath
+                    }
+
+                    accessibleChartElements.append(axElement)
                 }
-
-                let sliceSpaceAngleInner = visibleAngleCount == 1 || innerRadius == 0.0 ?
-                    0.0 :
-                    sliceSpace / innerRadius.DEG2RAD
-                let startAngleInner = rotationAngle + (angle + sliceSpaceAngleInner / 2.0) * CGFloat(phaseY)
-                var sweepAngleInner = (sliceAngle - sliceSpaceAngleInner) * CGFloat(phaseY)
-                if sweepAngleInner < 0.0
-                {
-                    sweepAngleInner = 0.0
-                }
-                let endAngleInner = startAngleInner + sweepAngleInner
-
-                path.addLine(
-                    to: CGPoint(
-                        x: center.x + innerRadius * cos(endAngleInner.DEG2RAD),
-                        y: center.y + innerRadius * sin(endAngleInner.DEG2RAD)))
-
-                path.addRelativeArc(center: center, radius: innerRadius, startAngle: endAngleInner.DEG2RAD, delta: -sweepAngleInner.DEG2RAD)
             }
-            else
-            {
-                if accountForSliceSpacing
-                {
-                    let angleMiddle = startAngleOuter + sweepAngleOuter / 2.0
 
-                    let sliceSpaceOffset =
-                        calculateMinimumRadiusForSpacedSlice(
-                            center: center,
-                            radius: radius,
-                            angle: sliceAngle * CGFloat(phaseY),
-                            arcStartPointX: arcStartPointX,
-                            arcStartPointY: arcStartPointY,
-                            startAngle: startAngleOuter,
-                            sweepAngle: sweepAngleOuter)
-
-                    let arcEndPointX = center.x + sliceSpaceOffset * cos(angleMiddle.DEG2RAD)
-                    let arcEndPointY = center.y + sliceSpaceOffset * sin(angleMiddle.DEG2RAD)
-
-                    path.addLine(
-                        to: CGPoint(
-                            x: arcEndPointX,
-                            y: arcEndPointY))
-                }
-                else
-                {
-                    path.addLine(to: center)
-                }
-            }
-
-            path.closeSubpath()
-
-            context.beginPath()
-            context.addPath(path)
-            context.fillPath(using: .evenOdd)
-
-            let axElement = createAccessibleElement(withIndex: j,
-                                                    container: chart,
-                                                    dataSet: dataSet)
-            { (element) in
-                element.accessibilityFrame = path.boundingBoxOfPath
-            }
-
-            accessibleChartElements.append(axElement)
+            angle += sliceAngle * CGFloat(phaseX)
         }
 
         // Post this notification to let VoiceOver account for the redrawn frames
@@ -306,8 +297,8 @@ open class PieChartRenderer: DataRenderer
         // get whole the radius
         let radius = chart.radius
         let rotationAngle = chart.rotationAngle
-        let drawAngles = chart.drawAngles
-        let absoluteAngles = chart.absoluteAngles
+        var drawAngles = chart.drawAngles
+        var absoluteAngles = chart.absoluteAngles
 
         let phaseX = animator.phaseX
         let phaseY = animator.phaseY
@@ -321,12 +312,14 @@ open class PieChartRenderer: DataRenderer
 
         let labelRadius = radius - labelRadiusOffset
 
-        let dataSets = data.dataSets
+        var dataSets = data.dataSets
 
         let yValueSum = (data as! PieChartData).yValueSum
 
         let drawEntryLabels = chart.isDrawEntryLabelsEnabled
         let usePercentValuesEnabled = chart.usePercentValuesEnabled
+        let entryLabelColor = chart.entryLabelColor
+        let entryLabelFont = chart.entryLabelFont
 
         var angle: CGFloat = 0.0
         var xIndex = 0
@@ -351,7 +344,7 @@ open class PieChartRenderer: DataRenderer
             let yValuePosition = dataSet.yValuePosition
 
             let valueFont = dataSet.valueFont
-            let entryLabelFont = dataSet.entryLabelFont ?? chart.entryLabelFont
+            let entryLabelFont = dataSet.entryLabelFont
             let lineHeight = valueFont.lineHeight
 
             guard let formatter = dataSet.valueFormatter else { continue }
@@ -397,7 +390,7 @@ open class PieChartRenderer: DataRenderer
                 let drawYInside = drawValues && yValuePosition == .insideSlice
 
                 let valueTextColor = dataSet.valueTextColorAt(j)
-                let entryLabelColor = dataSet.entryLabelColor ?? chart.entryLabelColor
+                let entryLabelColor = dataSet.entryLabelColor
 
                 if drawXOutside || drawYOutside
                 {
@@ -720,8 +713,8 @@ open class PieChartRenderer: DataRenderer
         var angle: CGFloat = 0.0
         let rotationAngle = chart.rotationAngle
 
-        let drawAngles = chart.drawAngles
-        let absoluteAngles = chart.absoluteAngles
+        var drawAngles = chart.drawAngles
+        var absoluteAngles = chart.absoluteAngles
         let center = chart.centerCircleBox
         let radius = chart.radius
         let drawInnerArc = chart.drawHoleEnabled && !chart.drawSlicesUnderHoleEnabled
@@ -740,8 +733,11 @@ open class PieChartRenderer: DataRenderer
             }
 
             guard let set = data.getDataSetByIndex(indices[i].dataSetIndex) as? IPieChartDataSet else { continue }
-            
-            if !set.isHighlightEnabled { continue }
+
+            if !set.isHighlightEnabled
+            {
+                continue
+            }
 
             let entryCount = set.entryCount
             var visibleAngleCount = 0
@@ -890,9 +886,7 @@ open class PieChartRenderer: DataRenderer
 
         // Prepend selected slices before the already rendered unselected ones.
         // NOTE: - This relies on drawDataSet() being called before drawHighlighted in PieChartView.
-        if !accessibleChartElements.isEmpty {
-            accessibleChartElements.insert(contentsOf: highlightedAccessibleElements, at: 1)
-        }
+        accessibleChartElements.insert(contentsOf: highlightedAccessibleElements, at: 1)
 
         context.restoreGState()
     }

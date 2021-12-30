@@ -12,6 +12,10 @@
 import Foundation
 import CoreGraphics
 
+#if !os(OSX)
+    import UIKit
+#endif
+
 @objc(ChartLegend)
 open class Legend: ComponentBase
 {
@@ -98,7 +102,7 @@ open class Legend: ComponentBase
     @objc open var direction: Direction = Direction.leftToRight
 
     @objc open var font: NSUIFont = NSUIFont.systemFont(ofSize: 10.0)
-    @objc open var textColor = NSUIColor.labelOrBlack
+    @objc open var textColor = NSUIColor.black
 
     /// The form/shape of the legend forms
     @objc open var form = Form.square
@@ -267,7 +271,11 @@ open class Legend: ComponentBase
                     }
                     
                     width += size.width
-                    maxHeight += labelLineHeight + yEntrySpace
+                    
+                    if i < entryCount - 1
+                    {
+                        maxHeight += labelLineHeight + yEntrySpace
+                    }
                 }
                 else
                 {

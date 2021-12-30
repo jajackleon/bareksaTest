@@ -17,6 +17,19 @@ class ViewController: UIViewController {
         lineChartView.backgroundColor = .clear
         lineChartView.xAxis.labelFont = .boldSystemFont(ofSize: 12)
         lineChartView.legend.enabled = true
+        lineChartView.rightAxis.enabled = false
+        
+        lineChartView.chartDescription?.enabled = false
+        lineChartView.xAxis.drawGridLinesEnabled = false
+        lineChartView.xAxis.drawLabelsEnabled = true
+        lineChartView.xAxis.drawAxisLineEnabled = false
+        lineChartView.xAxis.labelPosition = .bottom
+        lineChartView.rightAxis.enabled = false
+        lineChartView.drawBordersEnabled = false
+        lineChartView.legend.form = .none
+        lineChartView.xAxis.forceLabelsEnabled = true
+        lineChartView.xAxis.granularityEnabled = true
+        lineChartView.xAxis.granularity = 1
         return lineChartView
     }()
     
@@ -48,28 +61,14 @@ class ViewController: UIViewController {
         
         productVM = ProductDetailViewModel()
         productVM.fetchData(tableView: table)
-        productVM.fetchChartData { Data in
-            DispatchQueue.main.async {
-                _ = Data.map {
-                    self.setChart(dataEntries: $0)
-                }
-            }
-        }
+        
         setUpHeader()
         
-//        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-//        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0]
-//        view.addSubview(lineChart)
-//
-//        lineChart.translatesAutoresizingMaskIntoConstraints = false
-//        lineChart.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor, constant: 8).isActive = true
-//        lineChart.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        lineChart.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//        lineChart.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        setUpLineChart()
         
         setUpTimeFrame()
+        
         setUpTable()
-        view.addSubview(lineChart)
         
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "Your Title"
@@ -84,19 +83,39 @@ class ViewController: UIViewController {
         codeSegmented.backgroundColor = UIColor.clear
         codeSegmented.delegate = self
         view.addSubview(codeSegmented)
+        codeSegmented.translatesAutoresizingMaskIntoConstraints = false
+        codeSegmented.topAnchor.constraint(equalTo: view.topAnchor, constant: 42).isActive = true
+        codeSegmented.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        codeSegmented.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        codeSegmented.heightAnchor.constraint(equalToConstant: 50).isActive =  true
+    }
+    
+    private func setUpLineChart() {
+        view.addSubview(lineChart)
+        lineChart.translatesAutoresizingMaskIntoConstraints = false
+        lineChart.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor, constant: 8).isActive = true
+        lineChart.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        lineChart.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        lineChart.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -500).isActive = true
+        productVM.fetchChartData { Data in
+            DispatchQueue.main.async {
+                self.setChart(dataEntries: Data)
+            }
+        }
     }
     
     private func setUpTimeFrame() {
         timeFrameSegmented = TimeFrameHeader(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 20), buttonTitle: ["1W","1M", "1Y", "3Y", "5Y", "10Y", "All"], segmentedType: .headerSegmented)
         timeFrameSegmented.backgroundColor = UIColor.clear
         timeFrameSegmented.delegate = self
+        timeFrameSegmented.backgroundColor = UIColor.clear
         view.addSubview(timeFrameSegmented)
         timeFrameSegmented.translatesAutoresizingMaskIntoConstraints = false
-        timeFrameSegmented.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor, constant: 8).isActive = true
-        timeFrameSegmented.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        timeFrameSegmented.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        timeFrameSegmented.heightAnchor.constraint(equalTo: codeSegmented.heightAnchor).isActive = true
+        timeFrameSegmented.topAnchor.constraint(equalTo: lineChart.bottomAnchor, constant: 8).isActive = true
+        timeFrameSegmented.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        timeFrameSegmented.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
     }
-
 }
 
 extension ViewController: TimeFrameControlDelegate {
@@ -222,23 +241,36 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController {
     
-    func setChart(dataEntries: [ChartDataEntry]) {
-        
-            let pieChartDataSet = LineChartDataSet(entries: dataEntries, label: "Units Sold")
-            let pieChartData = LineChartData(dataSet: pieChartDataSet)
-            lineChart.data = pieChartData
-            
-            var colors: [UIColor] = []
-            
-            for _ in 0..<dataEntries.count {
-                let red = Double(arc4random_uniform(256))
-                let green = Double(arc4random_uniform(256))
-                let blue = Double(arc4random_uniform(256))
+    func setChart(dataEntries: [[ChartDataEntry]]) {
+        lineChart.data = generateData(dataEntries: dataEntries)
+    }
+    
+    func generateLineChartDataSet(dataSetEntries: [ChartDataEntry], color: UIColor, fillColor: UIColor) -> LineChartDataSet{
+        let dataSet = LineChartDataSet(values: dataSetEntries, label: "")
+        dataSet.colors = [color]
+        dataSet.mode = .cubicBezier
+        dataSet.circleRadius = 4
+        dataSet.circleHoleColor = fillColor
+        dataSet.fill = Fill.fillWithColor(fillColor)
+        dataSet.drawFilledEnabled = true
+        dataSet.setCircleColor(UIColor.clear)
+        dataSet.lineWidth = 2
+        dataSet.valueTextColor = color
+        dataSet.valueFont = UIFont(name: "Avenir", size: 12)!
+        return dataSet
+    }
+    
+    func generateData(dataEntries: [[ChartDataEntry]]) -> LineChartData{
+        if dataEntries.count == 3 {
+            let data = LineChartData(dataSets: [
+                generateLineChartDataSet(dataSetEntries: dataEntries[0], color: UIColor.blue, fillColor: UIColor.blueish),
                 
-                let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
-                colors.append(color)
-            }
-            
-            pieChartDataSet.colors = colors
+                generateLineChartDataSet(dataSetEntries: dataEntries[1], color: UIColor.green, fillColor: UIColor.orange),
+
+                generateLineChartDataSet(dataSetEntries: dataEntries[2], color: UIColor.orange, fillColor: UIColor.greenish)
+            ])
+            return data
         }
+        return LineChartData()
+    }
 }

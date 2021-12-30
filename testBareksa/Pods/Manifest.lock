@@ -1,7 +1,7 @@
 PODS:
-  - Charts (3.6.0):
-    - Charts/Core (= 3.6.0)
-  - Charts/Core (3.6.0)
+  - Charts (3.2.2):
+    - Charts/Core (= 3.2.2)
+  - Charts/Core (3.2.2)
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
@@ -13,7 +13,7 @@ PODS:
   - SDWebImage/Core (5.12.1)
 
 DEPENDENCIES:
-  - Charts
+  - Charts (~> 3.2.2)
   - RxCocoa
   - RxSwift
   - SDWebImage (~> 5.0)
@@ -27,12 +27,12 @@ SPEC REPOS:
     - SDWebImage
 
 SPEC CHECKSUMS:
-  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
 
-PODFILE CHECKSUM: 01bac22a30361ac94a8d351c961700c469363df1
+PODFILE CHECKSUM: 1f0cc31cac8876c979bdd289d2d7a8e21912da55
 
 COCOAPODS: 1.11.2

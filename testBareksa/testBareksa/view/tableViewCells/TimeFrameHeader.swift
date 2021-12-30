@@ -18,8 +18,8 @@ class TimeFrameHeader: UIView {
     private var segmentedType: customSegmentedType!
     
     var textColor:UIColor = .black
-    var selectorViewColor: UIColor = .red
-    var selectorTextColor: UIColor = .red
+    var selectorViewColor: UIColor = UIColor.greenish
+    var selectorTextColor: UIColor = UIColor.greenish
     
     weak var delegate:TimeFrameControlDelegate?
     
@@ -93,8 +93,8 @@ extension TimeFrameHeader {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         stack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        stack.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
-        stack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
+        stack.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        stack.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
     }
     
     private func configFooterStackView() {

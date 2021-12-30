@@ -43,7 +43,7 @@ class ProductDetailViewModel {
                 _ = chartDatas.data.values.map {
                     var emptyChart = [ChartDataEntry]()
                     _ = $0.data.map {
-                        emptyChart.append(ChartDataEntry(x: $0.growth, y: $0.value))
+                        emptyChart.append(ChartDataEntry(x: Double($0.growth), y: Double($0.value)))
                     }
                     self.productChartData.append(emptyChart)
                     completion(self.productChartData)
@@ -97,17 +97,17 @@ class ProductDetailViewModel {
                                 
         self.productDetail1W.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnOneWeek, return_money_detail: productDetail.details.returnOneWeek.asPercentString().addPrefix(string: " / 1mgg")))
         
-        self.productDetail1M.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnOneMonth, return_money_detail: productDetail.details.returnOneWeek.asPercentString().addPrefix(string: " / 1bln")))
+        self.productDetail1M.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnOneMonth, return_money_detail: productDetail.details.returnOneMonth.asPercentString().addPrefix(string: " / 1bln")))
 
         
-        self.productDetail1Y.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnOneYear, return_money_detail: productDetail.details.returnOneWeek.asPercentString().addPrefix(string: " / 1thn")))
+        self.productDetail1Y.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnOneYear, return_money_detail: productDetail.details.returnOneYear.asPercentString().addPrefix(string: " / 1thn")))
         
-        self.productDetail3Y.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnThreeYear, return_money_detail: productDetail.details.returnOneWeek.asPercentString().addPrefix(string: " / 3thn")))
+        self.productDetail3Y.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnThreeYear, return_money_detail: productDetail.details.returnThreeYear.asPercentString().addPrefix(string: " / 3thn")))
         
-        self.productDetail5Y.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnFiveYear, return_money_detail: productDetail.details.returnOneWeek.asPercentString().addPrefix(string: " / 5thn")))
+        self.productDetail5Y.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnFiveYear, return_money_detail: productDetail.details.returnFiveYear.asPercentString().addPrefix(string: " / 5thn")))
         
-        self.productDetail10Y.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnFiveYear, return_money_detail: productDetail.details.returnOneWeek.asPercentString().addPrefix(string: " / 10thn")))
+        self.productDetail10Y.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnFiveYear, return_money_detail: productDetail.details.returnFiveYear.asPercentString().addPrefix(string: " / 10thn")))
         
-        self.productDetailAll.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnInceptionGrowth, return_money_detail: productDetail.details.returnOneWeek.asPercentString().addPrefix(string: " ATH")))
+        self.productDetailAll.append(ProductDetailData(inception_date: inception_date, min_subscription:  min_subscription, type: type, tingkatResiko: tingkatResiko, total_unit: total_unit, nav: nav, return_money: productDetail.details.returnInceptionGrowth, return_money_detail: productDetail.details.returnInceptionGrowth.asPercentString().addPrefix(string: " ATH")))
     }
 }

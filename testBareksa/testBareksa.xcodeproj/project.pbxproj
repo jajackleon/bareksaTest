@@ -39,6 +39,7 @@
 		493872A4277DBA3D00D6F794 /* UIScrollView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872A3277DBA3D00D6F794 /* UIScrollView+.swift */; };
 		493872A6277DBD8800D6F794 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872A5277DBD8800D6F794 /* Double+.swift */; };
 		493872A8277DC53200D6F794 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872A7277DC53200D6F794 /* String+.swift */; };
+		493872AA277DDF4400D6F794 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872A9277DDF4400D6F794 /* LineChartView.swift */; };
 		D75269D8F3922CCED718A696 /* Pods_testBareksa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		493872A3277DBA3D00D6F794 /* UIScrollView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+.swift"; sourceTree = "<group>"; };
 		493872A5277DBD8800D6F794 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		493872A7277DC53200D6F794 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		493872A9277DDF4400D6F794 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		886A9EF16539AD3F9C64B47A /* Pods-testBareksa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.release.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.release.xcconfig"; sourceTree = "<group>"; };
 		89F0AB9C2EEA7C9E27965DB5 /* Pods-testBareksa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.debug.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.debug.xcconfig"; sourceTree = "<group>"; };
 		A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_testBareksa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				4938726B277C023100D6F794 /* tableViewCells */,
+				493872A9277DDF4400D6F794 /* LineChartView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				493871F4277B182C00D6F794 /* SceneDelegate.swift in Sources */,
 				4938729E277CBF8900D6F794 /* ProductDetailViewModel.swift in Sources */,
 				49387295277C9A8600D6F794 /* DetailButtonTableViewCell.swift in Sources */,
+				493872AA277DDF4400D6F794 /* LineChartView.swift in Sources */,
 				493872A0277CC64300D6F794 /* ProductDetailTimeFrame.swift in Sources */,
 				493872A4277DBA3D00D6F794 /* UIScrollView+.swift in Sources */,
 				4938729A277CB84000D6F794 /* Constants.swift in Sources */,
@@ -477,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -532,7 +536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

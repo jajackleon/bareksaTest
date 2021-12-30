@@ -23,9 +23,9 @@ class CustomSegmentedControl: UIView {
     private var selectorView: UIView!
     private var segmentedType: customSegmentedType!
     
-    var textColor:UIColor = .black
-    var selectorViewColor: UIColor = .red
-    var selectorTextColor: UIColor = .red
+    var textColor:UIColor = .darkGray
+    var selectorViewColor: UIColor = UIColor.greenish
+    var selectorTextColor: UIColor = UIColor.greenish
     
     weak var delegate:CustomSegmentedControlDelegate?
     
@@ -99,8 +99,8 @@ extension CustomSegmentedControl {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         stack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        stack.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
-        stack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
+        stack.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        stack.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
     }
     
     private func configFooterStackView() {
@@ -111,8 +111,8 @@ extension CustomSegmentedControl {
         addSubview(stack)
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16).isActive = true
-        stack.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        stack.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        stack.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
+        stack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
     }
     
     private func configTableHeader() {

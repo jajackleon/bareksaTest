@@ -1,20 +1,6 @@
-//
-//  Platform+Accessibility.swift
-//  Charts
-//
-//  Copyright 2015 Daniel Cohen Gindi & Philipp Jahoda
-//  A port of MPAndroidChart for iOS
-//  Licensed under Apache License 2.0
-//
-//  https://github.com/danielgindi/Charts
-//
-
 import Foundation
 
 #if os(iOS) || os(tvOS)
-#if canImport(UIKit)
-    import UIKit
-#endif
 
 internal func accessibilityPostLayoutChangedNotification(withElement element: Any? = nil)
 {
@@ -97,18 +83,13 @@ extension NSUIView
     open override func index(ofAccessibilityElement element: Any) -> Int
     {
         guard let axElement = element as? NSUIAccessibilityElement else { return NSNotFound }
-        return (accessibilityChildren() as? [NSUIAccessibilityElement])?
-            .firstIndex(of: axElement) ?? NSNotFound
+        return (accessibilityChildren() as? [NSUIAccessibilityElement])?.index(of: axElement) ?? NSNotFound
     }
 }
 
 #endif
 
 #if os(OSX)
-
-#if canImport(AppKit)
-import AppKit
-#endif
 
 internal func accessibilityPostLayoutChangedNotification(withElement element: Any? = nil)
 {
