@@ -40,6 +40,7 @@
 		493872A6277DBD8800D6F794 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872A5277DBD8800D6F794 /* Double+.swift */; };
 		493872A8277DC53200D6F794 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872A7277DC53200D6F794 /* String+.swift */; };
 		493872AA277DDF4400D6F794 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872A9277DDF4400D6F794 /* LineChartView.swift */; };
+		493872AC277DED4800D6F794 /* LineChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872AB277DED4800D6F794 /* LineChartViewModel.swift */; };
 		D75269D8F3922CCED718A696 /* Pods_testBareksa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		493872A5277DBD8800D6F794 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		493872A7277DC53200D6F794 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		493872A9277DDF4400D6F794 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
+		493872AB277DED4800D6F794 /* LineChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartViewModel.swift; sourceTree = "<group>"; };
 		886A9EF16539AD3F9C64B47A /* Pods-testBareksa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.release.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.release.xcconfig"; sourceTree = "<group>"; };
 		89F0AB9C2EEA7C9E27965DB5 /* Pods-testBareksa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.debug.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.debug.xcconfig"; sourceTree = "<group>"; };
 		A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_testBareksa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				4938729D277CBF8900D6F794 /* ProductDetailViewModel.swift */,
+				493872AB277DED4800D6F794 /* LineChartViewModel.swift */,
 			);
 			path = "view mdoels";
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				493871F2277B182C00D6F794 /* AppDelegate.swift in Sources */,
 				4938727C277C3B8000D6F794 /* UIImageView+.swift in Sources */,
 				49387291277C999700D6F794 /* BuyButtonTableViewCell.swift in Sources */,
+				493872AC277DED4800D6F794 /* LineChartViewModel.swift in Sources */,
 				493872A6277DBD8800D6F794 /* Double+.swift in Sources */,
 				493872A8277DC53200D6F794 /* String+.swift in Sources */,
 				4938726A277C017C00D6F794 /* UITableView+.swift in Sources */,

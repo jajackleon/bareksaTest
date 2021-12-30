@@ -6,11 +6,12 @@
 //
 
 import UIKit
-import RxCocoa
 import Charts
 
 class ViewController: UIViewController {
-    var productVM : ProductDetailViewModel!
+    
+    private var productVM : ProductDetailViewModel!
+    private var lineChartVM: LineChartViewModel!
     
     lazy var lineChart: LineChartView = {
         let lineChartView = LineChartView(frame: CGRect(x: 0, y: 0, width: 327, height: 186))
@@ -60,6 +61,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         productVM = ProductDetailViewModel()
+        lineChartVM = LineChartViewModel()
+        
         productVM.fetchData(tableView: table)
         
         setUpHeader()
@@ -97,7 +100,7 @@ class ViewController: UIViewController {
         lineChart.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         lineChart.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
         lineChart.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -500).isActive = true
-        productVM.fetchChartData { Data in
+        lineChartVM.fetchChartData { Data in
             DispatchQueue.main.async {
                 self.setChart(dataEntries: Data)
             }
@@ -128,7 +131,7 @@ extension ViewController: TimeFrameControlDelegate {
 
 extension ViewController: CustomSegmentedControlDelegate {
     func change(to index: Int) {
-        
+        //MARK: Change view here
     }
 }
 
@@ -240,37 +243,7 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController {
-    
     func setChart(dataEntries: [[ChartDataEntry]]) {
-        lineChart.data = generateData(dataEntries: dataEntries)
-    }
-    
-    func generateLineChartDataSet(dataSetEntries: [ChartDataEntry], color: UIColor, fillColor: UIColor) -> LineChartDataSet{
-        let dataSet = LineChartDataSet(values: dataSetEntries, label: "")
-        dataSet.colors = [color]
-        dataSet.mode = .cubicBezier
-        dataSet.circleRadius = 4
-        dataSet.circleHoleColor = fillColor
-        dataSet.fill = Fill.fillWithColor(fillColor)
-        dataSet.drawFilledEnabled = true
-        dataSet.setCircleColor(UIColor.clear)
-        dataSet.lineWidth = 2
-        dataSet.valueTextColor = color
-        dataSet.valueFont = UIFont(name: "Avenir", size: 12)!
-        return dataSet
-    }
-    
-    func generateData(dataEntries: [[ChartDataEntry]]) -> LineChartData{
-        if dataEntries.count == 3 {
-            let data = LineChartData(dataSets: [
-                generateLineChartDataSet(dataSetEntries: dataEntries[0], color: UIColor.blue, fillColor: UIColor.blueish),
-                
-                generateLineChartDataSet(dataSetEntries: dataEntries[1], color: UIColor.green, fillColor: UIColor.orange),
-
-                generateLineChartDataSet(dataSetEntries: dataEntries[2], color: UIColor.orange, fillColor: UIColor.greenish)
-            ])
-            return data
-        }
-        return LineChartData()
+        lineChart.data = lineChartVM.generateData(dataEntries: dataEntries)
     }
 }

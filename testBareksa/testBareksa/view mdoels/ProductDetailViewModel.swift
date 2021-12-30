@@ -32,29 +32,6 @@ class ProductDetailViewModel {
         }
     }
     
-    var productChartData: [[ChartDataEntry]] = [[ChartDataEntry]]()
-    
-    func fetchChartData(completion: @escaping ([[ChartDataEntry]]) -> Void ) {
-        URLSession.shared.request(url: Constants.chartDataURL, expecting: ChartData.self) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-                case .success(let chartDatas):
-                
-                _ = chartDatas.data.values.map {
-                    var emptyChart = [ChartDataEntry]()
-                    _ = $0.data.map {
-                        emptyChart.append(ChartDataEntry(x: Double($0.growth), y: Double($0.value)))
-                    }
-                    self.productChartData.append(emptyChart)
-                    completion(self.productChartData)
-                }
-
-                case .failure(let error):
-                    print(error)
-            }
-        }
-    }
-    
     func fetchData(tableView: UITableView) {
         URLSession.shared.request(url: Constants.productDetailURL, expecting: ProductDetail.self) { [weak self] result in
             guard let self = self else { return }
