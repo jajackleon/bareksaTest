@@ -12,27 +12,7 @@ class ViewController: UIViewController {
     
     private var productVM : ProductDetailViewModel!
     private var lineChartVM: LineChartViewModel!
-    
-    lazy var lineChart: LineChartView = {
-        let lineChartView = LineChartView(frame: CGRect(x: 0, y: 0, width: 327, height: 186))
-        lineChartView.backgroundColor = .clear
-        lineChartView.xAxis.labelFont = .boldSystemFont(ofSize: 12)
-        lineChartView.legend.enabled = true
-        lineChartView.rightAxis.enabled = false
-        
-        lineChartView.chartDescription?.enabled = false
-        lineChartView.xAxis.drawGridLinesEnabled = false
-        lineChartView.xAxis.drawLabelsEnabled = true
-        lineChartView.xAxis.drawAxisLineEnabled = false
-        lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.rightAxis.enabled = false
-        lineChartView.drawBordersEnabled = false
-        lineChartView.legend.form = .none
-        lineChartView.xAxis.forceLabelsEnabled = true
-        lineChartView.xAxis.granularityEnabled = true
-        lineChartView.xAxis.granularity = 1
-        return lineChartView
-    }()
+    private var lineChartView: CustomLineChart!
     
     //TODO: Wrap semua  view di dalam scroll view
     lazy var scrollView : UIScrollView = {
@@ -62,16 +42,8 @@ class ViewController: UIViewController {
         
         productVM = ProductDetailViewModel()
         lineChartVM = LineChartViewModel()
-        
         productVM.fetchData(tableView: table)
-        
-        setUpHeader()
-        
-        setUpLineChart()
-        
-        setUpTimeFrame()
-        
-        setUpTable()
+        setUpView()
         
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "Your Title"
@@ -79,6 +51,13 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+    }
+    
+    private func setUpView() {
+        setUpHeader()
+        setUpLineChart()
+        setUpTimeFrame()
+        setUpTable()
     }
     
     private func setUpHeader() {
@@ -94,12 +73,13 @@ class ViewController: UIViewController {
     }
     
     private func setUpLineChart() {
-        view.addSubview(lineChart)
-        lineChart.translatesAutoresizingMaskIntoConstraints = false
-        lineChart.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor, constant: 8).isActive = true
-        lineChart.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        lineChart.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
-        lineChart.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -500).isActive = true
+        lineChartView = CustomLineChart(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: 300))
+        view.addSubview(lineChartView)
+        lineChartView.translatesAutoresizingMaskIntoConstraints = false
+        lineChartView.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor, constant: 8).isActive = true
+        lineChartView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        lineChartView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        lineChartView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -500).isActive = true
         lineChartVM.fetchChartData { Data in
             DispatchQueue.main.async {
                 self.setChart(dataEntries: Data)
@@ -115,7 +95,7 @@ class ViewController: UIViewController {
         view.addSubview(timeFrameSegmented)
         timeFrameSegmented.translatesAutoresizingMaskIntoConstraints = false
         timeFrameSegmented.heightAnchor.constraint(equalTo: codeSegmented.heightAnchor).isActive = true
-        timeFrameSegmented.topAnchor.constraint(equalTo: lineChart.bottomAnchor, constant: 8).isActive = true
+        timeFrameSegmented.topAnchor.constraint(equalTo: lineChartView.bottomAnchor, constant: 8).isActive = true
         timeFrameSegmented.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         timeFrameSegmented.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
     }
@@ -188,8 +168,12 @@ extension ViewController: UITableViewDataSource {
             cell.setData(headerData: productVM?.productHeader ?? [])
             return cell
         }
-        else if indexPath.section == 8 || indexPath.section == 9 {
+        else if indexPath.section == 8 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailButtonTableViewCell", for: indexPath) as! DetailButtonTableViewCell
+            return cell
+        }
+        else if indexPath.section == 9 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BuyButtonTableViewCell", for: indexPath) as! BuyButtonTableViewCell
             return cell
         }
         
@@ -244,6 +228,6 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController {
     func setChart(dataEntries: [[ChartDataEntry]]) {
-        lineChart.data = lineChartVM.generateData(dataEntries: dataEntries)
+        lineChartView.lineChart.data = lineChartVM.generateData(dataEntries: dataEntries)
     }
 }

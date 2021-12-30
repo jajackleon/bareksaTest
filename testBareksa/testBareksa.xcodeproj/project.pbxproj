@@ -26,8 +26,6 @@
 		4938728A277C853A00D6F794 /* ProductHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387288277C853A00D6F794 /* ProductHeaderTableViewCell.swift */; };
 		4938728B277C853A00D6F794 /* ProductHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49387289277C853A00D6F794 /* ProductHeaderTableViewCell.xib */; };
 		4938728D277C91C700D6F794 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938728C277C91C700D6F794 /* UIView+.swift */; };
-		49387291277C999700D6F794 /* BuyButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938728F277C999600D6F794 /* BuyButtonTableViewCell.swift */; };
-		49387292277C999700D6F794 /* BuyButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49387290277C999600D6F794 /* BuyButtonTableViewCell.xib */; };
 		49387295277C9A8600D6F794 /* DetailButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387293277C9A8600D6F794 /* DetailButtonTableViewCell.swift */; };
 		49387296277C9A8600D6F794 /* DetailButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49387294277C9A8600D6F794 /* DetailButtonTableViewCell.xib */; };
 		49387298277C9B2000D6F794 /* UIButtonView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387297277C9B2000D6F794 /* UIButtonView+.swift */; };
@@ -41,6 +39,8 @@
 		493872A8277DC53200D6F794 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872A7277DC53200D6F794 /* String+.swift */; };
 		493872AA277DDF4400D6F794 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872A9277DDF4400D6F794 /* LineChartView.swift */; };
 		493872AC277DED4800D6F794 /* LineChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872AB277DED4800D6F794 /* LineChartViewModel.swift */; };
+		493872B1277DF7CA00D6F794 /* BuyButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493872AF277DF7CA00D6F794 /* BuyButtonTableViewCell.swift */; };
+		493872B2277DF7CA00D6F794 /* BuyButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 493872B0277DF7CA00D6F794 /* BuyButtonTableViewCell.xib */; };
 		D75269D8F3922CCED718A696 /* Pods_testBareksa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,8 +66,6 @@
 		49387288277C853A00D6F794 /* ProductHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		49387289277C853A00D6F794 /* ProductHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		4938728C277C91C700D6F794 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
-		4938728F277C999600D6F794 /* BuyButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyButtonTableViewCell.swift; sourceTree = "<group>"; };
-		49387290277C999600D6F794 /* BuyButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuyButtonTableViewCell.xib; sourceTree = "<group>"; };
 		49387293277C9A8600D6F794 /* DetailButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonTableViewCell.swift; sourceTree = "<group>"; };
 		49387294277C9A8600D6F794 /* DetailButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailButtonTableViewCell.xib; sourceTree = "<group>"; };
 		49387297277C9B2000D6F794 /* UIButtonView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButtonView+.swift"; sourceTree = "<group>"; };
@@ -81,6 +79,8 @@
 		493872A7277DC53200D6F794 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		493872A9277DDF4400D6F794 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		493872AB277DED4800D6F794 /* LineChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartViewModel.swift; sourceTree = "<group>"; };
+		493872AF277DF7CA00D6F794 /* BuyButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyButtonTableViewCell.swift; sourceTree = "<group>"; };
+		493872B0277DF7CA00D6F794 /* BuyButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuyButtonTableViewCell.xib; sourceTree = "<group>"; };
 		886A9EF16539AD3F9C64B47A /* Pods-testBareksa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.release.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.release.xcconfig"; sourceTree = "<group>"; };
 		89F0AB9C2EEA7C9E27965DB5 /* Pods-testBareksa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.debug.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.debug.xcconfig"; sourceTree = "<group>"; };
 		A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_testBareksa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,10 +247,10 @@
 		4938728E277C997E00D6F794 /* ButtonAction */ = {
 			isa = PBXGroup;
 			children = (
-				4938728F277C999600D6F794 /* BuyButtonTableViewCell.swift */,
-				49387290277C999600D6F794 /* BuyButtonTableViewCell.xib */,
 				49387293277C9A8600D6F794 /* DetailButtonTableViewCell.swift */,
 				49387294277C9A8600D6F794 /* DetailButtonTableViewCell.xib */,
+				493872AF277DF7CA00D6F794 /* BuyButtonTableViewCell.swift */,
+				493872B0277DF7CA00D6F794 /* BuyButtonTableViewCell.xib */,
 			);
 			path = ButtonAction;
 			sourceTree = "<group>";
@@ -325,7 +325,7 @@
 			files = (
 				49387296277C9A8600D6F794 /* DetailButtonTableViewCell.xib in Resources */,
 				4938728B277C853A00D6F794 /* ProductHeaderTableViewCell.xib in Resources */,
-				49387292277C999700D6F794 /* BuyButtonTableViewCell.xib in Resources */,
+				493872B2277DF7CA00D6F794 /* BuyButtonTableViewCell.xib in Resources */,
 				49387281277C3C2500D6F794 /* ProductDataTableViewCell.xib in Resources */,
 				493871FE277B182E00D6F794 /* LaunchScreen.storyboard in Resources */,
 				493871FB277B182E00D6F794 /* Assets.xcassets in Resources */,
@@ -385,13 +385,13 @@
 			files = (
 				493872A2277DA7BE00D6F794 /* Colors+.swift in Sources */,
 				493871F6277B182C00D6F794 /* ViewController.swift in Sources */,
+				493872B1277DF7CA00D6F794 /* BuyButtonTableViewCell.swift in Sources */,
 				4938720B277B193800D6F794 /* ChartData.swift in Sources */,
 				4938729C277CB89600D6F794 /* URLSession+.swift in Sources */,
 				49387280277C3C2500D6F794 /* ProductDataTableViewCell.swift in Sources */,
 				49387271277C1C4D00D6F794 /* TimeFrameHeader.swift in Sources */,
 				493871F2277B182C00D6F794 /* AppDelegate.swift in Sources */,
 				4938727C277C3B8000D6F794 /* UIImageView+.swift in Sources */,
-				49387291277C999700D6F794 /* BuyButtonTableViewCell.swift in Sources */,
 				493872AC277DED4800D6F794 /* LineChartViewModel.swift in Sources */,
 				493872A6277DBD8800D6F794 /* Double+.swift in Sources */,
 				493872A8277DC53200D6F794 /* String+.swift in Sources */,
