@@ -37,16 +37,14 @@ class ViewController: UIViewController {
     }
     
     private func setUpTimeFrame() {
-        timeFrameSegmented = TimeFrameHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50), buttonTitle: ["1W","1M", "1Y", "3Y", "5Y", "10Y", "All"], segmentedType: .headerSegmented)
-
+        timeFrameSegmented = TimeFrameHeader(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 20), buttonTitle: ["1W","1M", "1Y", "3Y", "5Y", "10Y", "All"], segmentedType: .headerSegmented)
         timeFrameSegmented.backgroundColor = UIColor.clear
         timeFrameSegmented.delegate = self
         view.addSubview(timeFrameSegmented)
         timeFrameSegmented.translatesAutoresizingMaskIntoConstraints = false
-        timeFrameSegmented.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor).isActive = true
-//        timeFrameSegmented.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        timeFrameSegmented.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        timeFrameSegmented.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        timeFrameSegmented.topAnchor.constraint(equalTo: codeSegmented.bottomAnchor, constant: 8).isActive = true
+        timeFrameSegmented.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        timeFrameSegmented.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
 
 }
@@ -66,7 +64,6 @@ extension ViewController: CustomSegmentedControlDelegate {
 }
 
 extension ViewController: UITableViewDelegate {
-    
     private func setUpTable(){
         registerCell()
         table.delegate = self
@@ -77,7 +74,6 @@ extension ViewController: UITableViewDelegate {
         table.backgroundColor = UIColor.clear
         table.sectionHeaderHeight = 0
         table.sectionFooterHeight = 0
-        
         view.addSubview(table)
         setTableConstraint()
     }
@@ -91,7 +87,7 @@ extension ViewController: UITableViewDelegate {
     
     private func setTableConstraint() {
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.topAnchor.constraint(equalTo: timeFrameSegmented.bottomAnchor, constant: 0).isActive = true
+        table.topAnchor.constraint(equalTo: timeFrameSegmented.bottomAnchor, constant: 4).isActive = true
         table.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         table.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         table.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
@@ -111,30 +107,6 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            let timeFrameSegmented = TimeFrameHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50), buttonTitle: ["1W","1M", "1Y", "3Y", "5Y", "10Y", "All"], segmentedType: .footerSegmented)
-
-            timeFrameSegmented.backgroundColor = UIColor.clear
-            timeFrameSegmented.delegate = self
-            return timeFrameSegmented
-        }
-         return nil
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let headerHeight: CGFloat
-
-            switch section {
-            case 0:
-                headerHeight = 50
-            default:
-                headerHeight = CGFloat.leastNormalMagnitude
-            }
-
-            return headerHeight
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

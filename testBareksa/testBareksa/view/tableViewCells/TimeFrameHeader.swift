@@ -104,9 +104,10 @@ extension TimeFrameHeader {
         stack.distribution = .fillEqually
         addSubview(stack)
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16).isActive = true
-        stack.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        stack.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        stack.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        stack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        stack.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
+        stack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
     }
     
     private func configTableHeader() {
