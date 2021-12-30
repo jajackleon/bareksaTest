@@ -8,9 +8,9 @@
 import Charts
 import UIKit
 
-class CustomLineChart: LineChartView {
+class CustomLineChart: UIView {
     lazy var lineChart: LineChartView = {
-        let lineChartView = LineChartView(frame: CGRect(x: 0, y: 0, width: 327, height: 186))
+        let lineChartView = LineChartView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 270))
         lineChartView.backgroundColor = .clear
         lineChartView.xAxis.labelFont = .boldSystemFont(ofSize: 12)
         lineChartView.legend.enabled = true

@@ -1,8 +1,8 @@
 //
-//  DetailButtonTableViewCell.swift
+//  BuyButtonTableViewCell.swift
 //  testBareksa
 //
-//  Created by Jackie Leonardy on 29/12/21.
+//  Created by Jackie Leonardy on 30/12/21.
 //
 
 import UIKit
