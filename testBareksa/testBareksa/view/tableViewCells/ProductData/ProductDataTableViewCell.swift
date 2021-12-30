@@ -35,10 +35,12 @@ class ProductDataTableViewCell: UITableViewCell {
     }
     
     func setData(productData data: [String], productTitle title: String) {
-        self.leftProductDetailValue.text = data[0]
-        self.centerProductDetailValue.text = data[1]
-        self.rightProductDetailValue.text = data[2]
-        self.productDetailTitle.text = title
+        if !data.isEmpty {
+            self.leftProductDetailValue.text = data[0]
+            self.centerProductDetailValue.text = data[1]
+            self.rightProductDetailValue.text = data[2]
+            self.productDetailTitle.text = title
+        }
     }
     
 }

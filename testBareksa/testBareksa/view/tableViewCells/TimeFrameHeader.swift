@@ -7,26 +7,28 @@
 
 import UIKit
 
-protocol TimeFrameHeaderControlDelegate:AnyObject {
-    func change(to index:Int)
+protocol TimeFrameControlDelegate:AnyObject {
+    func changeTime(to index:Int)
 }
 
 class TimeFrameHeader: UIView {
     private var buttonTitles:[String]!
     private var buttons: [UIButton]!
     private var selectorView: UIView!
+    private var segmentedType: customSegmentedType!
     
     var textColor:UIColor = .black
     var selectorViewColor: UIColor = .red
     var selectorTextColor: UIColor = .red
     
-    weak var delegate:TimeFrameHeaderControlDelegate?
+    weak var delegate:TimeFrameControlDelegate?
     
     public private(set) var selectedIndex : Int = 0
     
-    convenience init(frame:CGRect,buttonTitle:[String]) {
+    convenience init(frame:CGRect,buttonTitle:[String], segmentedType: customSegmentedType) {
         self.init(frame: frame)
         self.buttonTitles = buttonTitle
+        self.segmentedType = segmentedType
     }
     
     override func draw(_ rect: CGRect) {
@@ -34,12 +36,7 @@ class TimeFrameHeader: UIView {
         self.backgroundColor = UIColor.white
         updateView()
     }
-    
-    func setButtonTitles(buttonTitles:[String]) {
-        self.buttonTitles = buttonTitles
-        self.updateView()
-    }
-    
+
     func setIndex(index:Int) {
         buttons.forEach({ $0.setTitleColor(textColor, for: .normal) })
         let button = buttons[index]
@@ -57,7 +54,7 @@ class TimeFrameHeader: UIView {
             if btn == sender {
                 let selectorPosition = frame.width/CGFloat(buttonTitles.count) * CGFloat(buttonIndex)
                 selectedIndex = buttonIndex
-                delegate?.change(to: selectedIndex)
+                delegate?.changeTime(to: selectedIndex)
                 UIView.animate(withDuration: 0.3) {
                     self.selectorView.frame.origin.x = selectorPosition
                 }
@@ -71,11 +68,23 @@ class TimeFrameHeader: UIView {
 extension TimeFrameHeader {
     private func updateView() {
         createButton()
-        configSelectorView()
-        configStackView()
+        
+        switch segmentedType {
+            case .footerSegmented:
+                configSelectorViewWithSpacing(with: 10)
+                configFooterStackView()
+            case .headerSegmented:
+                configSelectorView()
+                configHeaderStackView()
+            case .tableHeaderSegmented:
+                configSelectorView()
+                configTableHeader()
+            case .none:
+                break
+        }
     }
     
-    private func configStackView() {
+    private func configHeaderStackView() {
         let stack = UIStackView(arrangedSubviews: buttons)
         stack.axis = .horizontal
         stack.alignment = .fill
@@ -84,13 +93,41 @@ extension TimeFrameHeader {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         stack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        stack.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        stack.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        stack.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
+        stack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
+    }
+    
+    private func configFooterStackView() {
+        let stack = UIStackView(arrangedSubviews: buttons)
+        stack.axis = .horizontal
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        addSubview(stack)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        stack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        stack.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
+        stack.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
+    }
+    
+    private func configTableHeader() {
+        let stack = UIStackView(arrangedSubviews: buttons)
+        stack.axis = .horizontal
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        addSubview(stack)
     }
     
     private func configSelectorView() {
         let selectorWidth = frame.width / CGFloat(self.buttonTitles.count)
         selectorView = UIView(frame: CGRect(x: 0, y: self.frame.height, width: selectorWidth, height: 2))
+        selectorView.backgroundColor = selectorViewColor
+        addSubview(selectorView)
+    }
+    
+    private func configSelectorViewWithSpacing(with spacing: Int) {
+        let selectorWidth = frame.width / CGFloat(self.buttonTitles.count)
+        selectorView = UIView(frame: CGRect(x: 0, y: self.frame.height - CGFloat(spacing), width: selectorWidth, height: 2))
         selectorView.backgroundColor = selectorViewColor
         addSubview(selectorView)
     }
@@ -108,6 +145,4 @@ extension TimeFrameHeader {
         }
         buttons[0].setTitleColor(selectorTextColor, for: .normal)
     }
-    
-    
 }

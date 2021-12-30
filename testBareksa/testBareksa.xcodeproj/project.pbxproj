@@ -33,6 +33,8 @@
 		49387298277C9B2000D6F794 /* UIButtonView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387297277C9B2000D6F794 /* UIButtonView+.swift */; };
 		4938729A277CB84000D6F794 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49387299277CB84000D6F794 /* Constants.swift */; };
 		4938729C277CB89600D6F794 /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938729B277CB89600D6F794 /* URLSession+.swift */; };
+		4938729E277CBF8900D6F794 /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938729D277CBF8900D6F794 /* ProductDetailViewModel.swift */; };
+		493872A0277CC64300D6F794 /* ProductDetailTimeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938729F277CC64300D6F794 /* ProductDetailTimeFrame.swift */; };
 		D75269D8F3922CCED718A696 /* Pods_testBareksa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		49387297277C9B2000D6F794 /* UIButtonView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButtonView+.swift"; sourceTree = "<group>"; };
 		49387299277CB84000D6F794 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4938729B277CB89600D6F794 /* URLSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
+		4938729D277CBF8900D6F794 /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
+		4938729F277CC64300D6F794 /* ProductDetailTimeFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailTimeFrame.swift; sourceTree = "<group>"; };
 		886A9EF16539AD3F9C64B47A /* Pods-testBareksa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.release.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.release.xcconfig"; sourceTree = "<group>"; };
 		89F0AB9C2EEA7C9E27965DB5 /* Pods-testBareksa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testBareksa.debug.xcconfig"; path = "Target Support Files/Pods-testBareksa/Pods-testBareksa.debug.xcconfig"; sourceTree = "<group>"; };
 		A369C37B1DC1F3E38CCEE11B /* Pods_testBareksa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_testBareksa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +137,7 @@
 			children = (
 				49387208277B18CC00D6F794 /* ProductDetail.swift */,
 				4938720A277B193800D6F794 /* ChartData.swift */,
+				4938729F277CC64300D6F794 /* ProductDetailTimeFrame.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 		49387207277B18AA00D6F794 /* view mdoels */ = {
 			isa = PBXGroup;
 			children = (
+				4938729D277CBF8900D6F794 /* ProductDetailViewModel.swift */,
 			);
 			path = "view mdoels";
 			sourceTree = "<group>";
@@ -370,7 +376,9 @@
 				4938726A277C017C00D6F794 /* UITableView+.swift in Sources */,
 				49387283277C3D1100D6F794 /* ProductStackHeader.swift in Sources */,
 				493871F4277B182C00D6F794 /* SceneDelegate.swift in Sources */,
+				4938729E277CBF8900D6F794 /* ProductDetailViewModel.swift in Sources */,
 				49387295277C9A8600D6F794 /* DetailButtonTableViewCell.swift in Sources */,
+				493872A0277CC64300D6F794 /* ProductDetailTimeFrame.swift in Sources */,
 				4938729A277CB84000D6F794 /* Constants.swift in Sources */,
 				49387209277B18CC00D6F794 /* ProductDetail.swift in Sources */,
 				4938728D277C91C700D6F794 /* UIView+.swift in Sources */,
