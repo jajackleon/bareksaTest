@@ -18,7 +18,7 @@ public protocol ProductDetailTimeFrame {
 
 extension ProductDetailTimeFrame {
     var danaKelolaan: String {
-        return String(nav * Double(total_unit))
+        return (nav * Double(total_unit)).formattedWithAbbreviations()
     }
 }
 
@@ -36,6 +36,8 @@ struct ProductDetailData: ProductDetailTimeFrame {
     var nav: Double
     
     var return_money: Double
+    
+    var return_money_detail: String
     
     var inception_date_formatted: String {
         let dateFormatter = DateFormatter()

@@ -11,6 +11,25 @@ import RxCocoa
 class ViewController: UIViewController {
     var productVM : ProductDetailViewModel!
     
+    
+    //TODO: Wrap semua  view di dalam scroll view
+    lazy var scrollView : UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isPagingEnabled = true
+        
+        let scrollViewHeight = UIScreen.main.bounds.height
+        let scrollViewWidth = tabBarController?.view.frame.width ?? 0
+        
+        let scrollViewHeightFinal = scrollViewHeight
+        
+        scrollView.contentSize = CGSize(width: scrollViewWidth, height: scrollViewHeightFinal)
+        
+        scrollView.delegate = self
+        
+        return scrollView
+    }()
+    
     private let table = UITableView(frame: .zero, style: .grouped)
     
     private var codeSegmented: CustomSegmentedControl!
@@ -18,11 +37,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         productVM = ProductDetailViewModel()
         productVM.fetchData(tableView: table)
         setUpHeader()
         setUpTimeFrame()
         setUpTable()
+        
+        navigationController?.navigationBar.isTranslucent = false
+        navigationItem.title = "Your Title"
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -133,7 +156,7 @@ extension ViewController: UITableViewDataSource {
 
         else if indexPath.section == 2 {
             cell.setData(productData: productVM.selectedProduct.map{
-                "\($0.return_money)"
+                $0.return_money_detail
             }, productTitle: "Imbal Hasil")
         }
 
@@ -166,7 +189,6 @@ extension ViewController: UITableViewDataSource {
                 $0.inception_date_formatted
             }, productTitle: "Peluncuran")
         }
-        
         return cell
     }
 }

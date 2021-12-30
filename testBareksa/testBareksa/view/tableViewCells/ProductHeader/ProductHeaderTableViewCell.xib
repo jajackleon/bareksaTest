@@ -38,7 +38,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <color key="backgroundColor" red="0.82428742460000004" green="0.96611279250000004" blue="0.87364091210000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="Gg0-Eb-Rtx" firstAttribute="leading" secondItem="Ycg-ux-NlZ" secondAttribute="leading" constant="16" id="0Rc-cm-VmE"/>
                                     <constraint firstItem="hWI-8f-few" firstAttribute="leading" secondItem="Ycg-ux-NlZ" secondAttribute="leading" constant="8" id="jCa-ex-AEy"/>
@@ -69,7 +69,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                <color key="backgroundColor" red="0.73444478970000004" green="0.73148183060000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="6zb-WY-gRd" firstAttribute="leading" secondItem="7wG-N5-AYF" secondAttribute="leading" constant="16" id="57a-Pj-0ty"/>
                                     <constraint firstAttribute="trailing" secondItem="kKu-bV-Ybi" secondAttribute="trailing" constant="8" id="DWP-P4-avJ"/>
@@ -100,7 +100,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <color key="backgroundColor" red="0.81297741349999997" green="0.90952824659999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <constraints>
                                     <constraint firstItem="hMY-F3-wlZ" firstAttribute="leading" secondItem="Kvf-Zx-hkW" secondAttribute="leading" constant="16" id="2Le-g8-7oM"/>
@@ -140,12 +140,6 @@
     </objects>
     <resources>
         <image name="placeholder-image" width="800" height="600"/>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
